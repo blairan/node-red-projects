@@ -1,0 +1,249 @@
+[
+    {
+        "id": "a33e1dc4a5e37d63",
+        "type": "tab",
+        "label": "mjpeg",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b684a7dd83f7e3fb",
+        "type": "base64",
+        "z": "a33e1dc4a5e37d63",
+        "name": "Encode",
+        "action": "",
+        "property": "payload",
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "652af98bf614c7f2"
+            ]
+        ]
+    },
+    {
+        "id": "652af98bf614c7f2",
+        "type": "ui_template",
+        "z": "a33e1dc4a5e37d63",
+        "group": "9f4bace2.7b09a",
+        "name": "Display image",
+        "order": 1,
+        "width": 7,
+        "height": 6,
+        "format": "<img alt=\"stream test\" src=\"data:image/jpg;base64,{{msg.payload}}\" />\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 780,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6acff1d24e8208aa",
+        "type": "change",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "http://192.168.23.106:81/stream",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 326,
+        "y": 117,
+        "wires": [
+            [
+                "702c41cb857c6cc9"
+            ]
+        ]
+    },
+    {
+        "id": "0ba6cda9f40cb8ef",
+        "type": "change",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "stop",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "702c41cb857c6cc9"
+            ]
+        ]
+    },
+    {
+        "id": "702c41cb857c6cc9",
+        "type": "multipart-decoder",
+        "z": "a33e1dc4a5e37d63",
+        "name": "MJPEG Encoder",
+        "ret": "bin",
+        "url": "",
+        "tls": "",
+        "delay": "5",
+        "maximum": "10000000",
+        "blockSize": "1",
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "b684a7dd83f7e3fb"
+            ]
+        ]
+    },
+    {
+        "id": "bd0759b965c5d833",
+        "type": "ui_button",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "group": "9f4bace2.7b09a",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "開始",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#F00001",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "6acff1d24e8208aa"
+            ]
+        ]
+    },
+    {
+        "id": "723d2b3b8b4428dc",
+        "type": "ui_button",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "group": "9f4bace2.7b09a",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "label": "結束",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#008000",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "0ba6cda9f40cb8ef"
+            ]
+        ]
+    },
+    {
+        "id": "212a50fb71020f41",
+        "type": "inject",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "6acff1d24e8208aa"
+            ]
+        ]
+    },
+    {
+        "id": "e6ea4b8df8e984e3",
+        "type": "inject",
+        "z": "a33e1dc4a5e37d63",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "0ba6cda9f40cb8ef"
+            ]
+        ]
+    },
+    {
+        "id": "9f4bace2.7b09a",
+        "type": "ui_group",
+        "name": "MJPEG Encoder",
+        "tab": "d75e440d.a22678",
+        "order": 1,
+        "disp": true,
+        "width": 7,
+        "collapse": false
+    },
+    {
+        "id": "d75e440d.a22678",
+        "type": "ui_tab",
+        "z": "a241b940b66323ad",
+        "name": "Cameras",
+        "icon": "camera_alt",
+        "order": 2
+    }
+]

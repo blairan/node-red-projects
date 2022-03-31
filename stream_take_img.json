@@ -1,0 +1,44 @@
+[
+    {
+        "id": "7bb4f2b670bc708c",
+        "type": "ui_template",
+        "z": "a241b940b66323ad",
+        "group": "a47969bb.d61188",
+        "name": "Last Image",
+        "order": 1,
+        "width": 7,
+        "height": 7,
+        "format": "<!--<img name=\"main\" id=\"main\" border=\"0\" width=\"480\" height=\"460\" src=\"../webcam/{{msg.stamp}}.jpg\"> -->\n<!--<img   src=\"D:/test/{{msg.stamp}}.jpg\"  width=\"350px\">-->\n<img src=\"http://192.168.23.106/capture\">\n<br>\nLAST IMAGE <h3>\n   <i class=\"fa fa-refresh\" aria-hidden=\"true\"></i>\n   <!--<a href=\"../ui\"> Reload Page</a>-->\n   <button onclick=\"location.reload();\">REFRESH PAGE</button>\n</h3>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "19dd74bad9ea029d"
+            ]
+        ]
+    },
+    {
+        "id": "a47969bb.d61188",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "8dce25e7.1af198",
+        "order": 1,
+        "disp": false,
+        "width": "15",
+        "collapse": false
+    },
+    {
+        "id": "8dce25e7.1af198",
+        "type": "ui_tab",
+        "name": "Webcam",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
