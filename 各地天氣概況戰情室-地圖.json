@@ -1,0 +1,1025 @@
+[
+    {
+        "id": "235d56f45e8554ef",
+        "type": "tab",
+        "label": "各地天氣查詢戰情室",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "113627baf6648bcb",
+        "type": "group",
+        "z": "235d56f45e8554ef",
+        "name": "openweather_json",
+        "style": {
+            "stroke": "#b797cf",
+            "fill": "#dbcbe7",
+            "label": true,
+            "label-position": "sw",
+            "color": "#0070c0"
+        },
+        "nodes": [
+            "b059bb7a8ee4ea98",
+            "ca0401039aab43aa",
+            "67f7aa3e2b54a35d",
+            "6d12c1062a5b6c87",
+            "33204128a14460ce",
+            "1f26e923a444db7e",
+            "c234188fa3fee40c",
+            "47b28f5be7c726b2",
+            "403edaedc0d1a918",
+            "505f706e6c236599",
+            "6ee348059351a8b8",
+            "4c6bed0db1c4a9d6"
+        ],
+        "x": 154,
+        "y": 59,
+        "w": 932,
+        "h": 230
+    },
+    {
+        "id": "21eaa0312c3b0b10",
+        "type": "group",
+        "z": "235d56f45e8554ef",
+        "name": "按鈕快捷",
+        "style": {
+            "stroke": "#addb7b",
+            "fill": "#c8e7a7",
+            "label": true,
+            "label-position": "sw",
+            "color": "#ff7f7f"
+        },
+        "nodes": [
+            "2543ddced15f6478",
+            "4652dbc80b599818",
+            "cfe2d4269fe4fccf",
+            "8b39c0cb48d2249e",
+            "7ac33b0e1705fe0e",
+            "1007eb57ebe5ac51",
+            "586dca23a6f9d87a"
+        ],
+        "x": 154,
+        "y": 339,
+        "w": 302,
+        "h": 330
+    },
+    {
+        "id": "747d3b3e4cd530de",
+        "type": "group",
+        "z": "235d56f45e8554ef",
+        "name": "地圖",
+        "style": {
+            "stroke": "#ffC000",
+            "fill": "#ffefbf",
+            "label": true,
+            "label-position": "sw",
+            "color": "#7f7f7f"
+        },
+        "nodes": [
+            "1aef894eb239dd77",
+            "95ca37c243387253",
+            "2f717e9971e69a2d",
+            "31feeeee02ecff77"
+        ],
+        "x": 894,
+        "y": 339,
+        "w": 232,
+        "h": 210
+    },
+    {
+        "id": "300b6e6ee0178202",
+        "type": "group",
+        "z": "235d56f45e8554ef",
+        "name": "顯示消息窗",
+        "style": {
+            "stroke": "#d1d1d1",
+            "fill": "#d1d1d1",
+            "label": true,
+            "label-position": "sw",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "53d6c85eb1fc977f",
+            "09859310986453f7",
+            "d3ef6d5360319e90",
+            "435edcb0c79852e0",
+            "1176d374721abcb1",
+            "35ed4a59debde621",
+            "44908da5ace1f454",
+            "692f7a9d67f7593f",
+            "0dee6d9109537ee5",
+            "bd740abaac8d015f",
+            "6c8496243f33d8f5",
+            "3799cb9bc593fce9",
+            "ada9b16b7f7d9265",
+            "6e53879aedc1a20e",
+            "92806e8a06925774"
+        ],
+        "x": 484,
+        "y": 339,
+        "w": 392,
+        "h": 570
+    },
+    {
+        "id": "b059bb7a8ee4ea98",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "group": "7fd1a7d3de3485c0",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "城市名稱:",
+        "format": "{{msg.payload.area}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 620,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ca0401039aab43aa",
+        "type": "ui_form",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "area",
+        "label": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "options": [
+            {
+                "label": "請輸入欲查詢的地區",
+                "value": "area",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "area": ""
+        },
+        "payload": "",
+        "submit": "送出",
+        "cancel": "刪除",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "c234188fa3fee40c",
+                "6ee348059351a8b8"
+            ]
+        ]
+    },
+    {
+        "id": "67f7aa3e2b54a35d",
+        "type": "template",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "field": "url",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "https://api.openweathermap.org/data/2.5/weather?lat={{lati}}&lon={{long}}&units=metric&appid=f7922c4d99e223e7380d80a7f3db6b64",
+        "output": "str",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            [
+                "47b28f5be7c726b2"
+            ]
+        ]
+    },
+    {
+        "id": "6d12c1062a5b6c87",
+        "type": "http request",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "33204128a14460ce"
+            ]
+        ]
+    },
+    {
+        "id": "33204128a14460ce",
+        "type": "change",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "lati",
+                "pt": "msg",
+                "to": "payload[0].lat",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "long",
+                "pt": "msg",
+                "to": "payload[0].lon",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 240,
+        "wires": [
+            [
+                "67f7aa3e2b54a35d"
+            ]
+        ]
+    },
+    {
+        "id": "1f26e923a444db7e",
+        "type": "debug",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c234188fa3fee40c",
+        "type": "template",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "field": "url",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "http://api.openweathermap.org/geo/1.0/direct?q={{payload.area}}&appid=f7922c4d99e223e7380d80a7f3db6b64",
+        "output": "str",
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "6d12c1062a5b6c87"
+            ]
+        ]
+    },
+    {
+        "id": "47b28f5be7c726b2",
+        "type": "http request",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "1f26e923a444db7e",
+                "505f706e6c236599"
+            ]
+        ]
+    },
+    {
+        "id": "2543ddced15f6478",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "group": "7fd1a7d3de3485c0",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "最想查詢的地區",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 260,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "4652dbc80b599818",
+        "type": "ui_button",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "花蓮",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0000C6",
+        "className": "",
+        "icon": "star",
+        "payload": "{\"area\":\"Hualien\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "1007eb57ebe5ac51"
+            ]
+        ]
+    },
+    {
+        "id": "cfe2d4269fe4fccf",
+        "type": "ui_button",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "台北",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0000C6",
+        "className": "",
+        "icon": "",
+        "payload": "{\"area\":\"Taipei\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 500,
+        "wires": [
+            [
+                "1007eb57ebe5ac51"
+            ]
+        ]
+    },
+    {
+        "id": "8b39c0cb48d2249e",
+        "type": "ui_button",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "台中",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0000C6",
+        "className": "",
+        "icon": "",
+        "payload": "{\"area\":\"Taichung\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "1007eb57ebe5ac51"
+            ]
+        ]
+    },
+    {
+        "id": "7ac33b0e1705fe0e",
+        "type": "ui_button",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "高雄",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0000C6",
+        "className": "",
+        "icon": "",
+        "payload": "{\"area\":\"Kaohsiung\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 580,
+        "wires": [
+            [
+                "1007eb57ebe5ac51"
+            ]
+        ]
+    },
+    {
+        "id": "1007eb57ebe5ac51",
+        "type": "link out",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "403edaedc0d1a918",
+            "95ca37c243387253"
+        ],
+        "x": 415,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "403edaedc0d1a918",
+        "type": "link in",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "link in 1",
+        "links": [
+            "1007eb57ebe5ac51"
+        ],
+        "x": 195,
+        "y": 180,
+        "wires": [
+            [
+                "c234188fa3fee40c",
+                "6ee348059351a8b8"
+            ]
+        ]
+    },
+    {
+        "id": "586dca23a6f9d87a",
+        "type": "ui_button",
+        "z": "235d56f45e8554ef",
+        "g": "21eaa0312c3b0b10",
+        "name": "",
+        "group": "7fd1a7d3de3485c0",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "桃園",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "#0000C6",
+        "className": "",
+        "icon": "",
+        "payload": "{\"area\":\"Taoyuan\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 620,
+        "wires": [
+            [
+                "1007eb57ebe5ac51"
+            ]
+        ]
+    },
+    {
+        "id": "505f706e6c236599",
+        "type": "link out",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "53d6c85eb1fc977f",
+            "95ca37c243387253"
+        ],
+        "x": 1045,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "53d6c85eb1fc977f",
+        "type": "link in",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "name": "link in 2",
+        "links": [
+            "505f706e6c236599"
+        ],
+        "x": 525,
+        "y": 480,
+        "wires": [
+            [
+                "09859310986453f7",
+                "d3ef6d5360319e90",
+                "435edcb0c79852e0",
+                "35ed4a59debde621",
+                "0dee6d9109537ee5",
+                "bd740abaac8d015f",
+                "6c8496243f33d8f5",
+                "3799cb9bc593fce9",
+                "ada9b16b7f7d9265",
+                "6e53879aedc1a20e",
+                "92806e8a06925774"
+            ]
+        ]
+    },
+    {
+        "id": "09859310986453f7",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "County:",
+        "format": "{{payload.sys.country}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 650,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d3ef6d5360319e90",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "lon:",
+        "format": "{{payload.coord.lon}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "435edcb0c79852e0",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "lat",
+        "format": "{{payload.coord.lat}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "1176d374721abcb1",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Location",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 650,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "35ed4a59debde621",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "City:",
+        "format": "{{payload.name}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "44908da5ace1f454",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Longitude and latitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 690,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "692f7a9d67f7593f",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temp",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "0dee6d9109537ee5",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 8,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Temp_max:",
+        "format": "{{payload.main.temp_max}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 660,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "bd740abaac8d015f",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Temp_min:",
+        "format": "{{payload.main.temp_min}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 660,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "6c8496243f33d8f5",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "wind_speed",
+        "format": "{{payload.wind.speed}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 660,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "3799cb9bc593fce9",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Humi:",
+        "format": "{{payload.main.humidity}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "ada9b16b7f7d9265",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 14,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "sunset:",
+        "format": "{{msg.payload.sys.sunset | date:\"HH:mm\"}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 790,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6e53879aedc1a20e",
+        "type": "ui_text",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 13,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "sunrise:",
+        "format": "{{msg.payload.sys.sunrise*1000 | date:\"HH:mm\"}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 790,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "1aef894eb239dd77",
+        "type": "ui_worldmap",
+        "z": "235d56f45e8554ef",
+        "g": "747d3b3e4cd530de",
+        "group": "5651b522018ce56a",
+        "order": 1,
+        "width": 12,
+        "height": 9,
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "EsriDG",
+        "cluster": "3",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "true",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "deg",
+        "showgrid": "false",
+        "allowFileDrop": "false",
+        "path": "/worldmap",
+        "overlist": "DR,CO,RA,DN,HM",
+        "maplist": "OSMG,OSMC,OSMH,EsriC,EsriS,EsriT,EsriDG,UKOS,SW",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 1040,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "6ee348059351a8b8",
+        "type": "change",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "area",
+                "pt": "flow",
+                "to": "payload.area",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "b059bb7a8ee4ea98"
+            ]
+        ]
+    },
+    {
+        "id": "95ca37c243387253",
+        "type": "link in",
+        "z": "235d56f45e8554ef",
+        "g": "747d3b3e4cd530de",
+        "name": "link in 3",
+        "links": [
+            "1007eb57ebe5ac51",
+            "505f706e6c236599"
+        ],
+        "x": 935,
+        "y": 440,
+        "wires": [
+            [
+                "2f717e9971e69a2d"
+            ]
+        ]
+    },
+    {
+        "id": "2f717e9971e69a2d",
+        "type": "template",
+        "z": "235d56f45e8554ef",
+        "g": "747d3b3e4cd530de",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"name\":\"{{flow.area}}\", \"lat\":{{lati}}, \"lon\":{{long}},\"temp_max\":{{payload.main.temp_max}}, \"temp_min\":{{payload.main.temp_min}}}",
+        "output": "json",
+        "x": 1010,
+        "y": 500,
+        "wires": [
+            [
+                "1aef894eb239dd77",
+                "31feeeee02ecff77"
+            ]
+        ]
+    },
+    {
+        "id": "31feeeee02ecff77",
+        "type": "debug",
+        "z": "235d56f45e8554ef",
+        "g": "747d3b3e4cd530de",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "4c6bed0db1c4a9d6",
+        "type": "ui_template",
+        "z": "235d56f45e8554ef",
+        "g": "113627baf6648bcb",
+        "group": "969d50c068a733b7",
+        "name": "",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .nr-dashboard-text {\n        border-width: 3px;\n        border-style: solid;\n        border-color:  \t#0000C6; //邊框\n    }\n    body.nr-dashboard-theme md-toolbar {\n    background-color: \t#0000C6;\n    color: rgb(250 250 250);\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 660,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92806e8a06925774",
+        "type": "ui_artlessgauge",
+        "z": "235d56f45e8554ef",
+        "g": "300b6e6ee0178202",
+        "group": "969d50c068a733b7",
+        "order": 11,
+        "width": 3,
+        "height": 2,
+        "name": "",
+        "icon": "",
+        "label": "Gauge",
+        "unit": "",
+        "layout": "radial",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload.wind.deg",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#ff9900",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 360,
+                "col": "#ff9900",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 670,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "7fd1a7d3de3485c0",
+        "type": "ui_group",
+        "name": "Search",
+        "tab": "24a71765b21f5301",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "969d50c068a733b7",
+        "type": "ui_group",
+        "name": "Infomation",
+        "tab": "24a71765b21f5301",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "5651b522018ce56a",
+        "type": "ui_group",
+        "name": "Location",
+        "tab": "24a71765b21f5301",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "24a71765b21f5301",
+        "type": "ui_tab",
+        "name": "openweathermap",
+        "icon": "wi-owm-03d",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
